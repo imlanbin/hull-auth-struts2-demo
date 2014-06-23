@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+
+    <package name="myPackage" extends="struts-default">
+        <interceptors>
+            <interceptor name="hullUser" class="io.hull.HullUserInterceptor" />
+            <interceptor-stack name="withHullUser">
+                <interceptor-ref name="hullUser" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="withHullUser" />
+
+        <default-action-ref name="index" />
+
+        <action name="index" class="io.hull.IndexAction">
+            <result>/jsp/index.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

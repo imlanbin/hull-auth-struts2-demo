@@ -26,11 +26,6 @@ public class HullUserInterceptor extends AbstractInterceptor {
         String cookieVal  = HullUtils.getURLDecodedCookieValue(request.getCookies(), hullCookie);
         String userId = HullUtils.authenticateUser(cookieVal, hullAppSecret);
 
-        if (userId == null) {
-            userId = "formidable";
-        }
-
-        request.setAttribute("HULL_USER_ID", userId);
         session.put("HULL_USER_ID", userId);
 
         String result = ai.invoke();

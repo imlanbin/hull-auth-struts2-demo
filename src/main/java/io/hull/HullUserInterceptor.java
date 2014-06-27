@@ -34,12 +34,15 @@ public class HullUserInterceptor extends AbstractInterceptor {
         if (userId == null) {
             session.put("HULL_USER_ID", null);
             session.put("HULL_USER", null);
+            session.put("HULL_USER_FETCHED_AT", null);
         } else {
-            String sessionUser = (String) session.get("HULL_USER_ID");
 
-            if (sessionUser != userId) {
+            String sessionUserId = (String) session.get("HULL_USER_ID");
+
+            if (!userId.equals(sessionUserId)) {
                 session.put("HULL_USER_ID", userId);
                 session.put("HULL_USER", this.getHullUser(userId));
+                session.put("HULL_USER_FETCHED_AT", new Date().toString());
             }
         }
 

@@ -17,6 +17,7 @@
 
 <% if (user != null) { %>
 <h1>Hello <%= user.get("name") %> [<%= user.getId() %>] </h1>
+<p>Fetched at <%= session.getAttribute("HULL_USER_FETCHED_AT") %></p>
 <% } %>
 
 <div data-hull-component="login/profile@hull"></div>
